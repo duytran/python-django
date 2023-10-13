@@ -77,12 +77,23 @@ WSGI_APPLICATION = 'gamesapi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASES = { 
+    'default': { 
+        'ENGINE': 'django.db.backends.postgresql', 
+        # Replace games with your desired database name 
+        'NAME': 'games', 
+        # Replace username with your desired user name 
+        'USER': 'user_name', 
+        # Replace password with your desired password 
+        'PASSWORD': 'password', 
+        # Replace 127.0.0.1 with the PostgreSQL host 
+        'HOST': '127.0.0.1', 
+        # Replace 5432 with the PostgreSQL configured port 
+        # in case you aren't using the default port 
+        'PORT': '5432', 
+    } 
+} 
+
 
 
 # Password validation
@@ -125,3 +136,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DEFAULT_PARSER_CLASSES = ( 
+    'rest_framework.parsers.JSONParser', 
+    'rest_framework.parsers.FormParser', 
+    'rest_framework.parsers.MultiPartParser' 
+) 
+
+DEFAULT_RENDERER_CLASSES = ( 
+    'rest_framework.renderers.JSONRenderer', 
+    'rest_framework.renderers.BrowsableAPIRenderer', 
+) 
+
